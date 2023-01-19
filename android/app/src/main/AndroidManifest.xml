@@ -1,5 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.f_movie">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
    <application
         android:label="f_movie"
         android:name="${applicationName}"
