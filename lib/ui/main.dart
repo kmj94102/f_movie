@@ -1,5 +1,6 @@
 import 'package:f_movie/data/movie_list_item.dart';
 import 'package:f_movie/network/network_util.dart';
+import 'package:f_movie/ui/detail.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -29,7 +30,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late List<MovieListItem> list;
+  List<MovieListItem> list = List.empty(growable: true);
 
   @override
   void initState() {
@@ -44,6 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SafeArea(
         child: GridView.builder(
           shrinkWrap: true,
+          padding: const EdgeInsets.symmetric(vertical: 20),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 5,
@@ -75,7 +77,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ],
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return DetailScreen(movieId: list[index].id ?? 0);
+                  }));
+                },
               ),
             );
           },
